@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Catalogue des activités</h1>
+      <input
+        type="text"
+        id="rech"
+        placeholder="Rechercher..."
+        class="form-control"
+      />
+
+      <br />
+      <select id="cat" class="form-control">
+        <option value="Toutes">Toutes</option>
+        <option value="Culture">Culture</option>
+        <option value="Artisanat">Artisanat</option>
+        <option value="Nature">Nature</option>
+        <option value="Découverte">Découverte</option>
+      </select>
+      <br />
+      <p>Nombre d'activités : <span id="nb">8</span></p>
+
+      <div class="row" id="liste">
+        <div class="col-md-4">
+          <div class="card">
+            <img src="haouaria.jpg" class="card-img-top" />
+            <div class="card-body">
+              <h3>Randonnée</h3>
+              <p>Nature - 2 heures - 30 DT</p>
+              <button onclick="alert('Découverte des paysages de El Haouaria')">
+                Voir les détails
+              </button>
+              <a href="reservation.html">Réserver</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <img src="kelibia.jpg" class="card-img-top" />
+            <div class="card-body">
+              <h3>Excursion en mer</h3>
+              <p>Découverte - 3 heures - 50 DT</p>
+              <button onclick="alert('Découverte de la mer de Kelibia')">
+                Voir les détails
+              </button>
+              <a href="reservation.html">Réserver</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <img src="fort.jpg" class="card-img-top" />
+            <div class="card-body">
+              <h3>Visite culturelle</h3>
+              <p>Culture - 2 heures - 25 DT</p>
+              <button onclick="alert('Visite du fort de Kelibia')">
+                Voir les détails
+              </button>
+              <a href="reservation.html">Réserver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p id="message"></p>
+    </div>
+
+    <script>
+      function filtrer() {
+        let recherche = document.getElementById("rech").value.toLowerCase();
+        let categorie = document.getElementById("cat").value;
+        let cartes = document.getElementById("liste").children;
+        let compteur = 0;
+        for (let i = 0; i < cartes.length; i++) {
+          let texte = cartes[i].innerText.toLowerCase();
+          if (
+            texte.includes(recherche) &&
+            (categorie == "Toutes" || texte.includes(categorie.toLowerCase()))
+          ) {
+            cartes[i].style.display = "block";
+            compteur++;
+          } else {
+            cartes[i].style.display = "none";
+          }
+        }
+
+        document.getElementById("nb").innerHTML = compteur;
+
+        if (compteur == 0) {
+          document.getElementById("message").innerHTML =
+            "Aucune activité trouvée";
+        } else {
+          document.getElementById("message").innerHTML = "";
+        }
+      }
+      document.getElementById("rech").addEventListener("input", filtrer);
+      document.getElementById("cat").addEventListener("change", filtrer);
+    </script>
+  </body>
+</html>
