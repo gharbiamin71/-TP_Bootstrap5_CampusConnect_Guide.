@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h1 class="text-center">Simulateur de réservation</h1>
+      <form id="formulaire">
+        <h3>Informations personnelles</h3>
+        <label>Nom :</label>
+        <input type="text" id="nom" class="form-control" />
+        <label>Prénom :</label>
+        <input type="text" id="prenom" class="form-control" />
+        <label>Email :</label>
+        <input type="email" id="email" class="form-control" />
+        <label>Téléphone :</label>
+        <input type="text" id="telephone" class="form-control" />
+        <br />
+        <h3>Informations de réservation</h3>
+        <label>Activité :</label>
+        <select id="activite" class="form-control">
+          <option value="0">Choisir une activité</option>
+          <option value="30">Randonnée - 30 DT</option>
+          <option value="50">Excursion en mer - 50 DT</option>
+          <option value="25">Visite culturelle - 25 DT</option>
+          <option value="20">Visite de Hammamet - 20 DT</option>
+          <option value="35">Atelier de poterie - 35 DT</option>
+          <option value="15">Visite des jardins - 15 DT</option>
+          <option value="40">Atelier de cuisine - 40 DT</option>
+          <option value="25">Découverte du patrimoine - 25 DT</option>
+        </select>
+        <label>Date souhaitée :</label>
+        <input type="date" id="date" class="form-control" />
+        <label>Nombre de participants :</label>
+        <input
+          type="number"
+          id="participants"
+          class="form-control"
+          min="1"
+          max="6"
+          value="1"
+        />
+        <label>Type de participation :</label>
+        <select id="type" class="form-control">
+          <option>Individuelle</option>
+          <option>Famille</option>
+          <option>Groupe</option>
+        </select>
+        <label>Commentaire :</label>
+        <textarea id="commentaire" class="form-control"></textarea>
+        <br />
+        <input type="checkbox" id="conditions" />
+        <label>J'accepte les conditions de simulation.</label>
+        <br /><br />
+        <button type="button" onclick="calculer()" class="btn btn-primary">
+          Calculer / Actualiser
+        </button>
+        <button type="button" onclick="valider()" class="btn btn-success">
+          Valider la simulation
+        </button>
+        <button type="reset" onclick="reinitialiser()" class="btn btn-danger">
+          Réinitialiser
+        </button>
+      </form>
+      <br />
+      <p id="erreur" class="text-danger"></p>
+      <!-- Résultat -->
+      <div id="resultat" class="alert alert-info" style="display: none">
+        <h3>Récapitulatif de réservation</h3>
+        <p>Prix unitaire : <span id="prix"></span> DT</p>
+        <p>Nombre de participants : <span id="nb"></span></p>
+        <p>Sous-total : <span id="sous"></span> DT</p>
+        <p>Remise : <span id="remise"></span> DT</p>
+        <h4>Total final : <span id="total"></span> DT</h4>
+        <p id="message"></p>
+      </div>
+    </div>
+    <script>
+      function calculer() {
+        let prix = Number(document.getElementById("activite").value);
+        let nb = Number(document.getElementById("participants").value);
+        let sous = prix * nb;
+        let remise = 0;
+        if (nb >= 4) {
+          remise = sous * 0.1;
+        }
+        let total = sous - remise;
+        document.getElementById("prix").innerHTML = prix;
+        document.getElementById("nb").innerHTML = nb;
+        document.getElementById("sous").innerHTML = sous;
+        document.getElementById("remise").innerHTML = remise;
+        document.getElementById("total").innerHTML = total;
+        document.getElementById("resultat").style.display = "block";
+      }
+      function valider() {
+        let nom = document.getElementById("nom").value;
+        let prenom = document.getElementById("prenom").value;
+        let email = document.getElementById("email").value;
+        let telephone = document.getElementById("telephone").value;
+        let activite = document.getElementById("activite").value;
+        let date = document.getElementById("date").value;
+        let nb = Number(document.getElementById("participants").value);
+        let conditions = document.getElementById("conditions").checked;
+        let aujourd = new Date().toISOString().split("T")[0];
+        if (nom == "" || prenom == "" || email == "" || telephone == "") {
+          document.getElementById("erreur").innerHTML =
+            "Veuillez remplir tous les champs.";
+        } else if (!email.includes("@") || !email.includes(".")) {
+          document.getElementById("erreur").innerHTML =
+            "Adresse email incorrecte.";
+        } else if (activite == "0") {
+          document.getElementById("erreur").innerHTML =
+            "Veuillez choisir une activité.";
+        } else if (date == "" || date < aujourd) {
+          document.getElementById("erreur").innerHTML =
+            "Veuillez choisir une date valide.";
+        } else if (nb < 1 || nb > 6) {
+          document.getElementById("erreur").innerHTML =
+            "Le nombre de participants doit être entre 1 et 6.";
+        } else if (conditions == false) {
+          document.getElementById("erreur").innerHTML =
+            "Veuillez accepter les conditions.";
+        } else {
+          document.getElementById("erreur").innerHTML = "";
+          calculer();
+          document.getElementById("message").innerHTML =
+            "Simulation enregistrée localement à l'écran : aucune réservation réelle n'a été effectuée.";
+        }
+      }
+      function reinitialiser() {
+        document.getElementById("erreur").innerHTML = "";
+        document.getElementById("resultat").style.display = "none";
+      }
+    </script>
+  </body>
+</html>
