@@ -79,8 +79,6 @@ section:first-of-type a:hover {
     background-color: #e76f51;
     transform: scale(1.05);
 }
-
-/* ACTIVITES */
 #activites div {
     display: inline-block;
     background-color: white;
@@ -147,8 +145,6 @@ footer {
         width: 90%;
     }
 }
-
-/* GENERAL */
 * {
     margin: 0;
     padding: 0;
