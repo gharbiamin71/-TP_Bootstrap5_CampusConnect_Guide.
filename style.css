@@ -1,16 +1,307 @@
-body {
-    background-color: #f5f9f9;
-    font-family: Arial;
+
+header {
+    background-color: #087e8b;
+    color: white;
+    padding: 20px;
+    text-align: center;
 }
 
-h1, h2 {
+header h1 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+/* MENU */
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #ffd166;
+}
+section {
+    padding: 50px 10%;
+    text-align: center;
+}
+
+section h2 {
     color: #087e8b;
+    font-size: 28px;
+    margin-bottom: 20px;
 }
 
-.card {
+section p {
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+section:first-of-type {
+    background: linear-gradient(
+        rgba(0, 90, 100, 0.65),
+        rgba(0, 90, 100, 0.65)
+    ),
+    url("image5.jpg");
+
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 10%;
+}
+
+section:first-of-type h2 {
+    color: white;
+    font-size: 40px;
+}
+
+a[href="reservation.html"],
+section:first-of-type a {
+    display: inline-block;
+    background-color: #f4a261;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+a[href="reservation.html"]:hover,
+section:first-of-type a:hover {
+    background-color: #e76f51;
+    transform: scale(1.05);
+}
+
+/* ACTIVITES */
+#activites div {
+    display: inline-block;
+    background-color: white;
+    width: 280px;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transition: 0.3s;
+    vertical-align: top;
+}
+
+#activites div:hover {
+    transform: translateY(-8px);
+}
+
+#activites h3 {
+    color: #087e8b;
+    margin: 15px 0;
+}
+
+#activites img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
     border-radius: 10px;
+}
+ul {
+    display: inline-block;
+    text-align: left;
+    margin-top: 15px;
+}
+
+li {
+    margin: 12px 0;
+    font-size: 17px;
+}
+footer {
+    background-color: #064c55;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 26px;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px;
+    }
+
+    section {
+        padding: 35px 5%;
+    }
+
+    section:first-of-type h2 {
+        font-size: 30px;
+    }
+
+    #activites div {
+        width: 90%;
+    }
+}
+
+/* GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #dff6f2, #f4f8f5);
+    color: #333;
+    padding: 30px 15px;
+}
+
+.container {
+    max-width: 750px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+}
+h1 {
+    color: #087e8b;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+h3 {
+    color: #087e8b;
+    border-bottom: 2px solid #f4a261;
+    padding-bottom: 10px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+h4 {
+    color: #087e8b;
+    font-size: 23px;
+    margin-top: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    color: #444;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #fafafa;
+    transition: 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #087e8b;
+    box-shadow: 0 0 5px rgba(8, 126, 139, 0.3);
+    background-color: white;
+}
+
+textarea.form-control {
+    height: 100px;
+    resize: vertical;
+}
+
+input[type="checkbox"] {
+    accent-color: #087e8b;
+    width: 17px;
+    height: 17px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+input[type="checkbox"] + label {
+    display: inline;
+    font-weight: normal;
+    margin-left: 5px;
 }
 
 button {
-    margin-right: 5px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 8px 5px 0 0;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background-color: #087e8b;
+}
+
+.btn-success {
+    background-color: #2a9d65;
+}
+
+.btn-danger {
+    background-color: #e76f51;
+}
+
+button:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+.text-danger {
+    color: #dc3545;
+    font-weight: bold;
+    margin-top: 15px;
+}
+.alert-info {
+    background-color: #e3f5f5;
+    border-left: 5px solid #087e8b;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.alert-info h3 {
+    margin-top: 0;
+}
+
+.alert-info p {
+    margin: 12px 0;
+    font-size: 16px;
+}
+
+#total {
+    color: #e76f51;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        margin: 10px auto;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    button {
+        width: 100%;
+        margin: 8px 0;
+    }
 }
